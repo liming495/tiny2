@@ -19,6 +19,7 @@
 
     <modules>
         <module>registry</module>
+        <module>config</module>
     </modules>
 
     <properties>

@@ -1,6 +1,15 @@
 version:  '2'
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 15673:15672
   registry:
-    image: tiny2/registry
+    image: tiny/registry
     ports:
       - "8761:8761"
+  config:
+    image: tiny/config
+    ports:
+      - "8888:8888"
