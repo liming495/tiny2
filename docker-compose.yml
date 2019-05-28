@@ -1,0 +1,6 @@
+version:  '2'
+services:
+  registry:
+    image: tiny2/registry
+    ports:
+      - "8761:8761"
