@@ -1,0 +1,6 @@
+FROM java:8
+VOLUME /tmp
+ADD ./target/a-service.jar /a-service.jar
+RUN bash -c 'touch /a-service.jar'
+EXPOSE 8080
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/a-service.jar"]

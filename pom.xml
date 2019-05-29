@@ -20,6 +20,15 @@
     <modules>
         <module>registry</module>
         <module>config</module>
+        <module>monitor</module>
+        <module>zipkin</module>
+        <module>gateway</module>
+        <module>auth-service</module>
+        <module>a-service</module>
+        <module>b-service</module>
+        <module>d1-service</module>
+        <module>d2-service</module>
+        <module>d3-service</module>
     </modules>
 
     <properties>
@@ -28,7 +37,7 @@
         <docker.plugin.version>1.0.0</docker.plugin.version>
         <docker.image.prefix>tiny2</docker.image.prefix>
         <spring.cloud.version>Finchley.RELEASE</spring.cloud.version>
-        <spring-boot-admin.version>1.5.4</spring-boot-admin.version>
+        <spring-boot-admin.version>2.1.5</spring-boot-admin.version>
     </properties>
 
     <dependencies>

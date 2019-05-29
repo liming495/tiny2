@@ -6,10 +6,36 @@ services:
     ports:
       - 15673:15672
   registry:
-    image: tiny/registry
+    image: tiny2/registry
     ports:
       - "8761:8761"
   config:
-    image: tiny/config
+    image: tiny2/config
     ports:
       - "8888:8888"
+  monitor:
+    image: tiny2/monitor
+    ports:
+      - "8040:8040"
+  gateway:
+    image: tiny2/gateway
+    ports:
+      - "8060:8060"
+  zipkin:
+    image: tiny2/zipkin
+    ports:
+      - "9411:9411"
+  auth-service:
+    image: tiny2/auth-service
+    ports:
+      - "5000:5000"
+  a-service:
+    image: tiny2/a-service
+  b-service:
+    image: tiny2/b-service
+  d1-service:
+    image: tiny2/d1-service
+  d2-service:
+    image: tiny2/d2-service
+  d3-service:
+    image: tiny2/d3-service
