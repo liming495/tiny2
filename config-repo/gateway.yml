@@ -39,3 +39,16 @@ zuul:
     d3-service:
       path: /logic/d/3/**
       sensitiveHeaders:
+gateway:
+  discovery:
+    locator:
+      enabled: false
+      lowerCaseServiceId: true
+  routes:
+    - id: service-hi
+      uri: lb://SERVICE-HI
+      predicates:
+        - Path=/demo/**
+      filters:
+        - StripPrefix=1
+        - RequestTime=true
