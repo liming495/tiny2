@@ -17,38 +17,51 @@ ribbon:
   ReadTimeout: 10000
   ConnectTimeout: 10000
 
-zuul:
-  ignoredServices: '*'
-  routes:
-    auth-service:
-      path: /uaa/**
-      stripPrefix: false
-      sensitiveHeaders:
-    a-service:
-      path: /logic/a/**
-      sensitiveHeaders:
-    b-service:
-      path: /logic/b/**
-      sensitiveHeaders:
-    d1-service:
-      path: /logic/d/1/**
-      sensitiveHeaders:
-    d2-service:
-      path: /logic/d/2/**
-      sensitiveHeaders:
-    d3-service:
-      path: /logic/d/3/**
-      sensitiveHeaders:
 gateway:
   discovery:
     locator:
       enabled: false
       lowerCaseServiceId: true
   routes:
-    - id: service-hi
-      uri: lb://SERVICE-HI
+    - id: auth-service
+      uri: lb://AUTH-SERVICE
       predicates:
-        - Path=/demo/**
+        - Path=/uaa/**
+      filters:
+        - StripPrefix=1
+        - RequestTime=true
+    - id: a-service
+      uri: lb://A-SERVICE
+      predicates:
+        - Path=/logic/a/**
+      filters:
+        - StripPrefix=1
+        - RequestTime=true
+    - id: b-service
+      uri: lb://B-SERVICE
+      predicates:
+        - Path=/logic/b/**
+      filters:
+        - StripPrefix=1
+        - RequestTime=true
+    - id: d1-service
+      uri: lb://D1-SERVICE
+      predicates:
+        - Path=/logic/d/1/**
+      filters:
+        - StripPrefix=1
+        - RequestTime=true
+    - id: d2-service
+      uri: lb://D2-SERVICE
+      predicates:
+        - Path=/logic/d/2/**
+      filters:
+        - StripPrefix=1
+        - RequestTime=true
+    - id: d3-service
+      uri: lb://D3-SERVICE
+      predicates:
+        - Path=/logic/d/3/**
       filters:
         - StripPrefix=1
         - RequestTime=true
