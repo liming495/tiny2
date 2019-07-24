@@ -1,8 +1,12 @@
 package com.guppy.auth.config;
 
+import com.guppy.auth.service.UsernameUserDetailService;
+import com.guppy.auth.service.UsernameUserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
@@ -13,6 +17,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import javax.sql.DataSource;
 
@@ -29,9 +35,12 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
     private DataSource dataSource;
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private UsernameUserDetailServiceImpl userDetailsService;
+
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public JdbcTokenStore tokenStore(){
+    public JdbcTokenStore tokenStore() {
         return new JdbcTokenStore(dataSource);
     }
 
@@ -76,8 +85,13 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore());
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+        endpoints.authenticationManager(authenticationManager)
+                // 配置JwtAccessToken转换器
+                .accessTokenConverter(jwtAccessTokenConverter())
+                // refresh_token需要userDetailsService
+                .reuseRefreshTokens(false).userDetailsService(userDetailsService);
+        //.tokenStore(getJdbcTokenStore());
     }
 
     @Configuration
@@ -94,5 +108,19 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
                     .withUser("anil").password("password").roles("ADMIN")
             ;
         }
+    }
+
+    /**
+     * 使用非对称加密算法来对Token进行签名
+     * @return
+     */
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        final JwtAccessTokenConverter converter = new JwtAccessToken();
+        // 导入证书
+        KeyStoreKeyFactory keyStoreKeyFactory =
+                new KeyStoreKeyFactory(new ClassPathResource("keystore.jks"), "mypass".toCharArray());
+        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
+        return converter;
     }
 }
