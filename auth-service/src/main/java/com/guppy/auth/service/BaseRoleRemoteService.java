@@ -1,7 +1,7 @@
 package com.guppy.auth.service;
 
-import com.guppy.data.mapper.model.BaseRole;
-import com.guppy.data.vo.ResponseData;
+import com.guppy.auth.mapper.model.BaseRole;
+import com.guppy.auth.vo.ResponseData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -1,7 +1,7 @@
 package com.guppy.auth.config;
 
-import com.guppy.data.mapper.model.BaseModuleResources;
-import com.guppy.data.mapper.model.BaseRole;
+import com.guppy.auth.mapper.model.BaseModuleResources;
+import com.guppy.auth.mapper.model.BaseRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

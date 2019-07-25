@@ -1,8 +1,8 @@
 package com.guppy.auth.service;
 
 import com.guppy.auth.common.ResponseCode;
-import com.guppy.data.mapper.model.BaseModuleResources;
-import com.guppy.data.vo.ResponseData;
+import com.guppy.auth.mapper.model.BaseModuleResources;
+import com.guppy.auth.vo.ResponseData;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;

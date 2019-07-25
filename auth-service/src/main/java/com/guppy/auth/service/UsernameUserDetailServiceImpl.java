@@ -1,8 +1,8 @@
 package com.guppy.auth.service;
 
 import com.guppy.auth.common.ResponseCode;
-import com.guppy.data.mapper.model.BaseUser;
-import com.guppy.data.vo.ResponseData;
+import com.guppy.auth.mapper.model.BaseUser;
+import com.guppy.auth.vo.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
