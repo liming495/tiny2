@@ -1,6 +1,5 @@
 package com.guppy.auth.service;
 
-import com.guppy.auth.client.BaseUserService;
 import com.guppy.auth.common.ResponseCode;
 import com.guppy.auth.config.BaseUserDetail;
 import com.guppy.auth.mapper.model.BaseModuleResources;
