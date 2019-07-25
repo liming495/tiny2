@@ -119,8 +119,8 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
         final JwtAccessTokenConverter converter = new JwtAccessToken();
         // 导入证书
         KeyStoreKeyFactory keyStoreKeyFactory =
-                new KeyStoreKeyFactory(new ClassPathResource("keystore.jks"), "mypass".toCharArray());
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
+                new KeyStoreKeyFactory(new ClassPathResource("keystore.jks"), "backup1806".toCharArray());
+        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("backup"));
         return converter;
     }
 }
