@@ -16,7 +16,11 @@ eureka:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:user
-    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://db:5432/tiny2
+    username: tiny2
+    password: A5p7P4
+    driverClassName: org.postgresql.Driver
+    schema:
+      - classpath:schema.sql
   jpa:
     show-sql: true
