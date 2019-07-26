@@ -10,7 +10,7 @@ eureka:
       user.password: ${spring.security.user.password}
   client:
     serviceUrl:
-      defaultZone: http://registry:8761/eureka/
+      defaultZone: http://user:${REGISTRY_SERVER_PASSWORD:password}@registry:8761/eureka/
 
 spring:
   cloud:
