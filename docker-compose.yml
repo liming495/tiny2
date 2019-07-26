@@ -1,5 +1,16 @@
 version:  '2'
 services:
+  db:
+    image: postgres:10
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: tiny2
+      POSTGRES_DB: tiny2
+      POSTGRES_PASSWORD: A5p7P4
+      PGDATA: /var/lib/postgresql/data/pgdata
+      volumes: /home/server/pg_data/data:/var/lib/postgresql/data/pgdata
   rabbitmq:
     image: rabbitmq:3-management
     restart: always
@@ -29,6 +40,8 @@ services:
     image: tiny2/auth-service
     ports:
       - "5000:5000"
+    links:
+      - db
   a-service:
     image: tiny2/a-service
   b-service:
