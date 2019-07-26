@@ -1,6 +1,6 @@
 package com.guppy.auth.service;
 
-import com.guppy.auth.mapper.model.BaseUser;
+import com.guppy.auth.dao.entity.BaseUser;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

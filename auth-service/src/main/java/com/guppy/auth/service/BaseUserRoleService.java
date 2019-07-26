@@ -1,6 +1,6 @@
 package com.guppy.auth.service;
 
-import com.guppy.auth.mapper.model.BaseUserRole;
+import com.guppy.auth.dao.entity.BaseUserRole;
 import com.guppy.auth.utils.UUID;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;

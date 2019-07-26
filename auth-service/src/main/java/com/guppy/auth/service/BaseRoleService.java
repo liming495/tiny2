@@ -1,9 +1,8 @@
 package com.guppy.auth.service;
 
-import com.guppy.auth.common.ResponseCode;
-import com.guppy.auth.mapper.model.BaseRole;
-import com.guppy.auth.vo.ResponseData;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.guppy.auth.dao.entity.BaseRole;
+import com.guppy.auth.dao.mapper.BaseRoleMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,13 +11,15 @@ import java.util.List;
  *
  * @author Guppy
  */
-public interface BaseRoleService extends BaseRoleRemoteService{
+@Service
+public class BaseRoleService extends BaseService<BaseRole>{
 
-    class HystrixClientFallback implements BaseRoleService{
-
-        @Override
-        public ResponseData<List<BaseRole>> getRoleByUserId(@PathVariable("userId") String userId) {
-            return new ResponseData<>(ResponseCode.ERROR.getCode(),ResponseCode.ERROR.getMessage());
-        }
+    /**
+     * 根据用户查询角色
+     * @param userId
+     * @return
+     */
+    public List<BaseRole> getRoleByUserId(String userId) {
+        return ((BaseRoleMapper)mapper).getRoleByUserId(userId);
     }
 }

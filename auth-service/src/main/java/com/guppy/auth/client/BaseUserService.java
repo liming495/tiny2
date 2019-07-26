@@ -2,7 +2,7 @@ package com.guppy.auth.client;
 
 import com.guppy.auth.common.InterfaceService;
 import com.guppy.auth.common.ResponseCode;
-import com.guppy.auth.mapper.model.BaseUser;
+import com.guppy.auth.dao.entity.BaseUser;
 import com.guppy.auth.service.BaseUserRemoteService;
 import com.guppy.auth.vo.ResponseData;
 import org.springframework.cloud.openfeign.FeignClient;

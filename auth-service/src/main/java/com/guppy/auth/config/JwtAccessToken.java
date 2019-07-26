@@ -2,7 +2,7 @@ package com.guppy.auth.config;
 
 import com.githup.liming495.utils.JSONUtils;
 import com.guppy.auth.common.Constant;
-import com.guppy.auth.mapper.model.BaseUser;
+import com.guppy.auth.dao.entity.BaseUser;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

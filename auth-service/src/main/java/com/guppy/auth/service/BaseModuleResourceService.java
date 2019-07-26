@@ -1,9 +1,8 @@
 package com.guppy.auth.service;
 
-import com.guppy.auth.common.ResponseCode;
-import com.guppy.auth.mapper.model.BaseModuleResources;
-import com.guppy.auth.vo.ResponseData;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.guppy.auth.dao.entity.BaseModuleResources;
+import com.guppy.auth.dao.mapper.BaseModuleResourcesMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,13 +11,20 @@ import java.util.List;
  *
  * @author Guppy
  */
-public interface BaseModuleResourceService extends BaseModuleResourcesRemoteService {
+@Service
+public class BaseModuleResourceService extends BaseService<BaseModuleResources>{
 
-    class HystrixClientFallback implements BaseModuleResourceService{
 
-        @Override
-        public ResponseData<List<BaseModuleResources>> getMenusByUserId(@PathVariable("userId") String userId) {
-            return new ResponseData<>(ResponseCode.ERROR.getCode(), ResponseCode.ERROR.getMessage());
-        }
+    /**
+     * 根据用户查询菜单
+     * @param userId
+     * @return
+     */
+    public List<BaseModuleResources> getMenusByUserId(String userId) {
+        return ((BaseModuleResourcesMapper)mapper).getMenusByUserId(userId);
+    }
+
+    public List<BaseModuleResources> getModuleTree(String id, String systemId) {
+        return ((BaseModuleResourcesMapper)mapper).selectModuleTree(id, systemId);
     }
 }

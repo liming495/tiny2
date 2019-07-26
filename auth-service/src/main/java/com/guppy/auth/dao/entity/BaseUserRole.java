@@ -1,4 +1,4 @@
-package com.guppy.auth.mapper.model;
+package com.guppy.auth.dao.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

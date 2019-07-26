@@ -2,9 +2,11 @@ package com.guppy.auth.service;
 
 import com.guppy.auth.common.ResponseCode;
 import com.guppy.auth.config.BaseUserDetail;
-import com.guppy.auth.mapper.model.BaseModuleResources;
-import com.guppy.auth.mapper.model.BaseRole;
-import com.guppy.auth.mapper.model.BaseUser;
+import com.guppy.auth.dao.entity.BaseModuleResources;
+import com.guppy.auth.dao.entity.BaseRole;
+import com.guppy.auth.dao.entity.BaseUser;
+import com.guppy.auth.facade.BaseModuleResourceFacadeImpl;
+import com.guppy.auth.facade.BaseRoleFacadeImpl;
 import com.guppy.auth.vo.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,9 +32,9 @@ public abstract class BaseUserDetailServiceImpl implements UserDetailsService {
     @Autowired
     protected BaseUserService baseUserService;
     @Autowired
-    private BaseRoleService baseRoleService;
+    private BaseRoleFacadeImpl baseRoleService;
     @Autowired
-    private BaseModuleResourceService baseModuleResourceService;
+    private BaseModuleResourceFacadeImpl baseModuleResourceService;
     @Autowired
     private RedisTemplate<String, BaseRole> redisTemplate;
     @Autowired

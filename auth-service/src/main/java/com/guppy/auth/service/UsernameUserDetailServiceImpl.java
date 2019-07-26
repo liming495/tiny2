@@ -1,7 +1,7 @@
 package com.guppy.auth.service;
 
 import com.guppy.auth.common.ResponseCode;
-import com.guppy.auth.mapper.model.BaseUser;
+import com.guppy.auth.dao.entity.BaseUser;
 import com.guppy.auth.vo.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
