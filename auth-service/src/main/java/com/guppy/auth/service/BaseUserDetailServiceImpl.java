@@ -78,11 +78,11 @@ public abstract class BaseUserDetailServiceImpl implements UserDetailsService {
     protected abstract BaseUser getUser(String var1) ;
 
     private boolean isActive(int active){
-        return active == 1 ? true : false;
+        return active == 1;
     }
 
     private List<GrantedAuthority> convertToAuthorities(BaseUser baseUser, List<BaseRole> roles) {
-        List<GrantedAuthority> authorities = new ArrayList();
+        List<GrantedAuthority> authorities = new ArrayList<>();
         // 清除 Redis 中用户的角色
         redisTemplate.delete(baseUser.getId());
         roles.forEach(e -> {
