@@ -8,7 +8,7 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
-    service-url:
+    serviceUrl:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
 
 spring:
