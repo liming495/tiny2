@@ -1,6 +1,5 @@
 package com.guppy.auth.config;
 
-import com.guppy.auth.service.UsernameUserDetailService;
 import com.guppy.auth.service.UsernameUserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
