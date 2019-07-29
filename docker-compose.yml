@@ -21,6 +21,11 @@ services:
     restart: always
     ports:
       - 15673:15672
+  zipkin:
+    image: openzipkin/zipkin
+    restart: always
+    ports:
+      - "9411:9411"
   registry:
     image: tiny2/registry
     ports:
@@ -37,10 +42,6 @@ services:
     image: tiny2/gateway
     ports:
       - "8060:8060"
-  zipkin:
-    image: tiny2/zipkin
-    ports:
-      - "9411:9411"
   auth-service:
     image: tiny2/auth-service
     ports:
