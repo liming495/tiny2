@@ -45,8 +45,9 @@ services:
     image: tiny2/auth-service
     ports:
       - "5000:5000"
-    links:
-      - db redis
+    depends_on:
+      - 'db'
+      - 'redis'
   a-service:
     image: tiny2/a-service
   b-service:
