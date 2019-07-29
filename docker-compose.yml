@@ -59,7 +59,3 @@ services:
     image: tiny2/d2-service
   d3-service:
     image: tiny2/d3-service
-  service-data:
-    image: tiny2/service-data
-    links:
-      - db
