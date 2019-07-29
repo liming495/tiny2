@@ -46,7 +46,7 @@ services:
     ports:
       - "5000:5000"
     links:
-      - db
+      - db redis
   a-service:
     image: tiny2/a-service
   b-service:
