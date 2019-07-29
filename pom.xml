@@ -28,7 +28,6 @@
         <module>d1-service</module>
         <module>d2-service</module>
         <module>d3-service</module>
-        <module>service-data</module>
     </modules>
 
     <properties>
