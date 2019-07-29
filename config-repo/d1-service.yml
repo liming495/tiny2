@@ -6,17 +6,20 @@ msg: Hi
 eureka:
   instance:
     metadata-map:
-      user.name: ${security.user.name}
-      user.password: ${security.user.password}
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+
+spring:
+  security:
+    user:
+      name: user
+      password: password
 
 security:
-  user:
-    name: user
-    password: password
   oauth2:
     client:
       clientId: d1-service
-      clientSecret: ${security.user.password}
+      clientSecret: ${spring.security.user.password}
       accessTokenUri: http://${authserver.hostname}:${authserver.port}${authserver.contextPath}/oauth/token
       grant-type: client_credentials
       scope: server
