@@ -17,8 +17,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisAuthConfiguration {
 
-    @Autowired
-    private JedisConnectionFactory con;
+    private JedisConnectionFactory con = new JedisConnectionFactory();
 
     @Bean
     public RedisTemplate<String, BaseRole> baseRoleTemplate() {
