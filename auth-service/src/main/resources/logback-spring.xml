@@ -15,7 +15,9 @@
                 <pattern>${PATTERN}</pattern>
             </encoder>
         </appender>
-        <logger name="com.example" level="DEBUG"/>
+        <logger name="com.guppy" level="DEBUG"/>
+        <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
+        <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         <root level="info">
             <appender-ref ref="CONSOLE"/>
         </root>
@@ -38,6 +40,8 @@
         </appender>
         <root level="info">
             <appender-ref ref="TEST-FILE"/>
+            <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
+            <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         </root>
     </springProfile>
     <!-- 生产环境 -->
@@ -54,6 +58,8 @@
         </appender>
         <root level="warn">
             <appender-ref ref="PROD_FILE" />
+            <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
+            <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         </root>
     </springProfile>
 </configuration>
