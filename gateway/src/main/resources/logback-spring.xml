@@ -16,10 +16,10 @@
             </encoder>
         </appender>
         <logger name="com.example" level="DEBUG"/>
+        <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
+        <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         <root level="info">
             <appender-ref ref="CONSOLE"/>
-            <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
-            <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         </root>
     </springProfile>
     <!-- 测试环境 -->
@@ -38,10 +38,10 @@
                 <pattern>${PATTERN}</pattern>
             </layout>
         </appender>
+        <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
+        <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         <root level="info">
             <appender-ref ref="TEST-FILE"/>
-            <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
-            <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         </root>
     </springProfile>
     <!-- 生产环境 -->
@@ -56,10 +56,10 @@
                 <pattern>${PATTERN}</pattern>
             </layout>
         </appender>
+        <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
+        <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         <root level="warn">
             <appender-ref ref="PROD_FILE" />
-            <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
-            <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
         </root>
     </springProfile>
 </configuration>
