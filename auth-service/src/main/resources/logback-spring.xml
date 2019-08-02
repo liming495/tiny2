@@ -18,6 +18,8 @@
         <logger name="com.guppy" level="DEBUG"/>
         <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
         <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
+        <logger name="org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer" level="WARN"/>
+        <logger name="org.springframework.amqp.rabbit.connection.CachingConnectionFactory" level="WARN"/>
         <root level="info">
             <appender-ref ref="CONSOLE"/>
         </root>
@@ -38,8 +40,11 @@
                 <pattern>${PATTERN}</pattern>
             </layout>
         </appender>
+        <logger name="com.guppy" level="DEBUG"/>
         <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
         <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
+        <logger name="org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer" level="WARN"/>
+        <logger name="org.springframework.amqp.rabbit.connection.CachingConnectionFactory" level="WARN"/>
         <root level="info">
             <appender-ref ref="TEST-FILE"/>
         </root>
@@ -56,8 +61,11 @@
                 <pattern>${PATTERN}</pattern>
             </layout>
         </appender>
+        <logger name="com.guppy" level="DEBUG"/>
         <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
         <logger name="org.springframework.cloud.config.client.ConfigServicePropertySourceLocator" level="WARN"/>
+        <logger name="org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer" level="WARN"/>
+        <logger name="org.springframework.amqp.rabbit.connection.CachingConnectionFactory" level="WARN"/>
         <root level="warn">
             <appender-ref ref="PROD_FILE" />
         </root>

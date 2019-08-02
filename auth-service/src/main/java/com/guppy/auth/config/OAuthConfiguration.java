@@ -33,7 +33,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationManager auth;
     @Autowired
     private UsernameUserDetailServiceImpl userDetailsService;
 
@@ -85,12 +85,16 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints.authenticationManager(authenticationManager)
+/*        endpoints.authenticationManager(authenticationManager)
                 // 配置JwtAccessToken转换器
                 .accessTokenConverter(jwtAccessTokenConverter())
                 // refresh_token需要userDetailsService
                 .reuseRefreshTokens(false).userDetailsService(userDetailsService);
-        //.tokenStore(getJdbcTokenStore());
+        //.tokenStore(getJdbcTokenStore());*/
+        endpoints
+                .authenticationManager(auth)
+                .tokenStore(tokenStore())
+        ;
     }
 
     @Configuration
