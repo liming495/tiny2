@@ -25,12 +25,18 @@ spring:
     host: rabbitmq
   boot:
     admin:
-      routes:
-        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
-      turbine:
-        clusters: default
-        location: http://monitor:${turbine.stream.port}
+      ui:
+        title: admin
   security:
     user:
       name: admin
       password: ${MONITOR_SERVER_PASSWORD:admin}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
