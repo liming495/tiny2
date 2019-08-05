@@ -39,6 +39,8 @@ security:
     resource:
       user-info-uri: http://${authserver.hostname}:${authserver.port}${authserver.contextPath}/current
 
+logging:
+  path: logs/log
 management:
   endpoints:
     web:
