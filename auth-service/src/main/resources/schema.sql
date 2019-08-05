@@ -1,12 +1,14 @@
 DROP TABLE IF EXISTS oauth_access_token;
 CREATE TABLE oauth_access_token (
-  token_id varchar(256) DEFAULT NULL,
+  token_id VARCHAR(255) NOT NULL,
   token bytea,
-  authentication_id varchar(256) DEFAULT NULL,
-  user_name varchar(256) DEFAULT NULL,
-  client_id varchar(256) DEFAULT NULL,
+  authentication_id VARCHAR(255) NOT NULL,
+  user_name VARCHAR(255),
+  client_id VARCHAR(255),
   authentication bytea,
-  refresh_token varchar(256) DEFAULT NULL
+  refresh_token VARCHAR(255),
+  PRIMARY KEY (token_id),
+  UNIQUE (authentication_id)
 );
 
 DROP TABLE IF EXISTS oauth_client_details;
@@ -275,15 +277,16 @@ INSERT INTO base_user_role VALUES ('9c263bcb22d84f1aa0193e809c2ef4dd', '0cb71fdd
 -- ----------------------------
 DROP TABLE IF EXISTS oauth_access_token;
 CREATE TABLE oauth_access_token (
-  token_id varchar(255) DEFAULT NULL,
+  token_id VARCHAR(255) NOT NULL,
   token bytea,
-  authentication_id varchar(255) NOT NULL,
-  user_name varchar(255) DEFAULT NULL,
-  client_id varchar(255) DEFAULT NULL,
+  authentication_id VARCHAR(255) NOT NULL,
+  user_name VARCHAR(255),
+  client_id VARCHAR(255),
   authentication bytea,
-  refresh_token varchar(255) DEFAULT NULL,
-  PRIMARY KEY (authentication_id)
-) ;
+  refresh_token VARCHAR(255),
+  PRIMARY KEY (token_id),
+  UNIQUE (authentication_id)
+);
 
 -- ----------------------------
 -- Records of oauth_access_token

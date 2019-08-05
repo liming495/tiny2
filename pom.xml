@@ -19,10 +19,10 @@
 
     <modules>
 <!--        <module>registry</module>
-        <module>config</module>
-        <module>monitor</module>-->
-        <module>gateway</module>
+        <module>monitor</module>
+        <module>gateway</module>-->
         <module>auth-service</module>
+        <module>config</module>
 <!--        <module>a-service</module>
         <module>b-service</module>
         <module>d1-service</module>
