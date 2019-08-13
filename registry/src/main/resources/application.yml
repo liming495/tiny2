@@ -16,3 +16,12 @@ spring:
     user:
       name: user
       password: ${REGISTRY_SERVER_PASSWORD:password}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
