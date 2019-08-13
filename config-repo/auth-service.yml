@@ -3,17 +3,11 @@ server:
   servlet:
     context-path: /uaa
 
-management:
-  security:
-    enabled: false
-  context-path: /mgmt
-
 eureka:
-  instance:
-    health-check-url-path: ${server.servlet.context-path}${management.context-path}/health
-    status-page-url-path: ${server.servlet.context-path}${management.context-path}/info
-    metadata-map:
-      management.context-path: ${server.servlet.context-path}${management.context-path}
+  client:
+    instance:
+      leaseRenewalIntervalInSeconds: 10
+      health-check-url-path: ${server.servlet.context-path}/actuator/health
 
 spring:
   datasource:
