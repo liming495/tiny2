@@ -3,12 +3,6 @@ server:
   servlet:
     context-path: /uaa
 
-eureka:
-  client:
-    instance:
-      leaseRenewalIntervalInSeconds: 10
-      health-check-url-path: ${server.servlet.context-path}/actuator/health
-
 spring:
   datasource:
     url: jdbc:postgresql://db:5432/tiny2
