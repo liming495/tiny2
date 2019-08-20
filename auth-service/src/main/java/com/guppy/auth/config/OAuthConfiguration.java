@@ -3,8 +3,11 @@ package com.guppy.auth.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -22,29 +25,38 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager auth;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Bean
     public JdbcTokenStore tokenStore() {
         return new JdbcTokenStore(dataSource);
     }
 
     @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode("123456");
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.passwordEncoder(passwordEncoder);
+    }
 
-        // 配置两个客户端，一个用于password认证一个用于client认证
-        clients.inMemory().withClient("client_1")
-                //.resourceIds(Utils.RESOURCEIDS.ORDER)
-                .authorizedGrantTypes("client_credentials", "refresh_token")
-                .scopes("select")
-                .authorities("oauth2")
-                .secret(finalSecret)
-                .and().withClient("client_2")
-                //.resourceIds(Utils.RESOURCEIDS.ORDER)
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        endpoints
+                .authenticationManager(auth)
+                .tokenStore(tokenStore())
+        ;
+    }
+
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+
+        clients.jdbc(dataSource)
+                .passwordEncoder(passwordEncoder)
+                .withClient("client")
+                .secret("secret")
                 .authorizedGrantTypes("password", "refresh_token")
-                .scopes("server")
-                .authorities("oauth2")
-                .secret(finalSecret)
+                .scopes("read", "write")
+                .accessTokenValiditySeconds(3600) // 1 hour
+                .refreshTokenValiditySeconds(2592000) // 30 days
                 .and()
                 .withClient("a-service")
                 .secret("password")
@@ -68,18 +80,22 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
         ;
+
     }
 
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore())
-                .authenticationManager(authenticationManager)
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
-    }
+    @Configuration
+    @Order(-20)
+    protected static class AuthenticationManagerConfiguration extends GlobalAuthenticationConfigurerAdapter {
+        @Autowired
+        private DataSource dataSource;
 
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        // 允许表单认证
-        security.allowFormAuthenticationForClients();
+        @Override
+        public void init(AuthenticationManagerBuilder auth) throws Exception {
+            auth.jdbcAuthentication().dataSource(dataSource)
+                    .withUser("dave").password("secret").roles("USER")
+                    .and()
+                    .withUser("anil").password("password").roles("ADMIN")
+            ;
+        }
     }
 }
