@@ -27,6 +27,7 @@ spring:
     driverClassName: org.postgresql.Driver
     schema:
       - classpath:schema.sql
+    initalization-mode: always
   jpa:
     show-sql: true
     generate-ddl: false
