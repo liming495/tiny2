@@ -31,11 +31,11 @@ spring:
   jpa:
     show-sql: true
 #    generate-ddl: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        temp:
-          use_jdbc_metadata_defaults: false
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        temp:
+#          use_jdbc_metadata_defaults: false
   redis:
     database: 0
     host: ${REDIS_HOST:redis}
