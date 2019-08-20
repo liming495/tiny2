@@ -4,16 +4,20 @@ server:
     context-path: /uaa
 
 management:
-  security:
-    enabled: false
-  context-path: /mgmt
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 eureka:
   instance:
-    health-check-url-path: ${server.servlet.context-path}${management.context-path}/actuator/health
-    status-page-url-path: ${server.servlet.context-path}${management.context-path}/actuator/info
+    health-check-url-path: ${server.servlet.context-path}/actuator/health
+    status-page-url-path: ${server.servlet.context-path}/actuator/info
     metadata-map:
-      management.context-path: ${server.servlet.context-path}${management.context-path}
+      management.context-path: ${server.servlet.context-path}
 
 spring:
   datasource:
