@@ -48,9 +48,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().anyRequest()
+/*        http.requestMatchers()
+                .anyRequest()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/**").permitAll();
+                .antMatchers("/oauth/**").permitAll();*/
+        String matcher = "/current";
+        http.requestMatchers()
+                .antMatchers(matcher)
+                .and()
+                .authorizeRequests()
+                .antMatchers(matcher)
+                .access("#oauth2.hasScope('read')");
     }
 }
