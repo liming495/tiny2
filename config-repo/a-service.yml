@@ -1,14 +1,12 @@
 server:
   port: 8080
 
-management:
-  security:
-    enabled: false
-
 name: liming495
 
 eureka:
   instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
     metadata-map:
       user.name: ${spring.security.user.name}
       user.password: ${spring.security.user.password}
