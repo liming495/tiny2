@@ -51,8 +51,8 @@ services:
       - 'redis'
   a-service:
     image: tiny2/a-service
-#  b-service:
-#    image: tiny2/b-service
+  b-service:
+    image: tiny2/b-service
 #  d1-service:
 #    image: tiny2/d1-service
 #  d2-service:
