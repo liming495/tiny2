@@ -1,8 +1,10 @@
 server:
   port: 10100
+
 spring:
   application:
     name: service-e
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10

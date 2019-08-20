@@ -10,8 +10,8 @@ management:
 
 eureka:
   instance:
-    health-check-url-path: ${server.servlet.context-path}${management.context-path}/health
-    status-page-url-path: ${server.servlet.context-path}${management.context-path}/info
+    health-check-url-path: ${server.servlet.context-path}${management.context-path}/actuator/health
+    status-page-url-path: ${server.servlet.context-path}${management.context-path}/actuator/info
     metadata-map:
       management.context-path: ${server.servlet.context-path}${management.context-path}
 
