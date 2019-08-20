@@ -47,42 +47,27 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
                 .secret(finalSecret)
                 .and()
                 .withClient("a-service")
-                //.resourceIds(Utils.RESOURCEIDS.ORDER)
+                .secret("password")
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
-                .authorities("oauth2")
-                .secret(finalSecret)
                 .and()
                 .withClient("b-service")
-                //.resourceIds(Utils.RESOURCEIDS.ORDER)
+                .secret("password")
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
-                .authorities("oauth2")
-                .secret(finalSecret)
                 .and()
                 .withClient("d1-service")
-                //.resourceIds(Utils.RESOURCEIDS.ORDER)
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
-                .authorities("oauth2")
-                .secret(finalSecret)
                 .and()
                 .withClient("d2-service")
-                //.resourceIds(Utils.RESOURCEIDS.ORDER)
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
-                .authorities("oauth2")
-                .secret(finalSecret)
                 .and()
                 .withClient("d3-service")
-                //.resourceIds(Utils.RESOURCEIDS.ORDER)
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
-                .authorities("oauth2")
-                .secret(finalSecret);
-
-
-
+        ;
     }
 
     @Override
