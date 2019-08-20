@@ -39,9 +39,9 @@ security:
     resource:
       user-info-uri: http://${authserver.hostname}:${authserver.port}${authserver.contextPath}/current
 
-logging:
-  path: logs/log
 management:
+  security:
+    enabled: false
   endpoints:
     web:
       exposure:
@@ -49,3 +49,6 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+logging:
+  path: logs/log

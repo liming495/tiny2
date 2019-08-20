@@ -18,10 +18,10 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>registry</module>
+       <!-- <module>registry</module>
         <module>gateway</module>
         <module>monitor</module>
-        <module>config</module>
+        <module>config</module>-->
         <module>auth-service</module>
         <module>a-service</module>
         <module>b-service</module>
