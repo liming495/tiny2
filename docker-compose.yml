@@ -51,13 +51,13 @@ services:
       - 'redis'
   a-service:
     image: tiny2/a-service
-  b-service:
-    image: tiny2/b-service
-  d1-service:
-    image: tiny2/d1-service
-  d2-service:
-    image: tiny2/d2-service
-  d3-service:
-    image: tiny2/d3-service
+#  b-service:
+#    image: tiny2/b-service
+#  d1-service:
+#    image: tiny2/d1-service
+#  d2-service:
+#    image: tiny2/d2-service
+#  d3-service:
+#    image: tiny2/d3-service
 #  service-e:
 #    image: tiny2/service-e

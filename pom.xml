@@ -24,11 +24,11 @@
         <module>config</module>-->
         <module>auth-service</module>
         <module>a-service</module>
-        <module>b-service</module>
+<!--        <module>b-service</module>
         <module>d1-service</module>
         <module>d2-service</module>
         <module>d3-service</module>
-<!--        <module>service-e</module>-->
+        <module>service-e</module>-->
     </modules>
 
     <properties>
