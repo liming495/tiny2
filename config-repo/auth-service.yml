@@ -30,13 +30,3 @@ spring:
     initialization-mode: ALWAYS
   jpa:
     show-sql: true
-  redis:
-    database: 0
-    host: ${REDIS_HOST:redis}
-    port: ${REDIS_PORT:6379}
-    timeout: 50000
-    pool:
-      max-idle: 8
-      min-idle: 0
-      max-active: 8
-      max-wait: -1
