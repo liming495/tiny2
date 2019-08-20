@@ -19,7 +19,7 @@ security:
   oauth2:
     client:
       clientId: d3-service
-      clientSecret: ${spring.security.user.password}
+      clientSecret: 123456
       accessTokenUri: http://${authserver.hostname}:${authserver.port}${authserver.contextPath}/oauth/token
       grant-type: client_credentials
       scope: server
