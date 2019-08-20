@@ -17,16 +17,3 @@ security:
       accessTokenUri: http://${authserver.hostname}:${authserver.port}${authserver.contextPath}/oauth/token
       grant-type: client_credentials
       scope: server
-
-spring:
-  security:
-    user:
-      name: user
-      password: password
-  datasource:
-    url: jdbc:postgresql://db:5432/tiny2
-    username: tiny2
-    password: A5p7P4
-    driverClassName: org.postgresql.Driver
-  jpa:
-    show-sql: true
