@@ -71,7 +71,7 @@
         <logger name="org.springframework.web" level="INFO"/>
         <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="WARN"/>
         <root level="info">
-            <appender-ref ref="stdout" />
+            <!--<appender-ref ref="stdout" />-->
             <appender-ref ref="dailyRollingFileAppender" />
             <!--<appender-ref ref="logstash" />-->
         </root>
