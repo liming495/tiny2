@@ -35,7 +35,7 @@ CREATE TABLE oauth_refresh_token (
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   username varchar(50) NOT NULL,
-  password varchar(50) NOT NULL,
+  password varchar(128) NOT NULL,
   enabled BOOLEAN NOT NULL,
   PRIMARY KEY (username)
 );
