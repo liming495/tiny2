@@ -1,5 +1,6 @@
 package com.guppy.auth.config;
 
+import com.guppy.auth.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,17 +23,9 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    //@Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
-        String finalPassword = "{bcrypt}"+bCryptPasswordEncoder.encode("123456");
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user_1").password(finalPassword).authorities("USER").build());
-        manager.createUser(User.withUsername("user_2").password(finalPassword).authorities("USER").build());
-
-        return manager;
+    @Bean
+    UserDetailsService detailsService() {
+        return new UserDetailsServiceImpl();
     }
 
     @Bean
@@ -44,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        //authenticationProvider.setUserDetailsService(detailsService());
+        authenticationProvider.setUserDetailsService(detailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }

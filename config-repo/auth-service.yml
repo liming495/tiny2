@@ -33,6 +33,7 @@ spring:
     initialization-mode: ALWAYS
   jpa:
     show-sql: true
+    ddl-auto: update
     properties:
       hibernate:
         jdbc:
