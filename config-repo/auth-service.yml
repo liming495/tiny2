@@ -20,6 +20,9 @@ eureka:
       management.context-path: ${server.servlet.context-path}
 
 spring:
+  cloud:
+    refresh:
+      refreshable: none
   datasource:
     url: jdbc:postgresql://db:5432/tiny2
     username: tiny2
