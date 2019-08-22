@@ -30,7 +30,6 @@ public class ServiceAController {
     private LoadBalancerClient client;
     @Autowired
     Registration registration;
-    @Qualifier("b-service")
     @Autowired
     ServiceBClient serviceBClient;
 
