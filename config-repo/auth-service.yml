@@ -33,3 +33,8 @@ spring:
     initialization-mode: ALWAYS
   jpa:
     show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
