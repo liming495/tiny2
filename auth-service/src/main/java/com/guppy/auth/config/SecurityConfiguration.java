@@ -39,11 +39,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    //@Bean
+    @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        AuthenticationManager manager = super.authenticationManagerBean();
-        return manager;
+        //AuthenticationManager manager = super.authenticationManagerBean();
+        return super.authenticationManagerBean();
     }
 
     @Override
