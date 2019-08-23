@@ -40,8 +40,6 @@ security:
       user-info-uri: http://${authserver.hostname}:${authserver.port}${authserver.contextPath}/current
 
 management:
-  security:
-    enabled: false
   endpoints:
     web:
       exposure:
