@@ -26,4 +26,4 @@ security:
 
 management:
   security:
-    enabled=false: false
+    enabled: false
