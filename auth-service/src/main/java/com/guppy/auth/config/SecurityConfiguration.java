@@ -54,7 +54,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/**").permitAll();*/
         String matcher = "/current";
         http.requestMatchers()
-                .antMatchers(matcher)
+                .anyRequest()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/actuator/**")
+                .permitAll()
                 .and()
                 .authorizeRequests()
                 .antMatchers(matcher)
