@@ -33,22 +33,27 @@ services:
       - 'rabbitmq'
   registry:
     image: tiny2/registry
+    container_name: registry
     ports:
       - "8761:8761"
   config:
     image: tiny2/config
+    container_name: config
     ports:
       - "8888:8888"
   monitor:
     image: tiny2/monitor
+    container_name: monitor
     ports:
       - "8040:8040"
   gateway:
     image: tiny2/gateway
+    container_name: gateway
     ports:
       - "8060:8060"
   auth-service:
     image: tiny2/auth-service
+    container_name: service-auth
     ports:
       - "5000:5000"
     depends_on:
@@ -56,8 +61,10 @@ services:
       - 'redis'
   a-service:
     image: tiny2/a-service
+    container_name: service-a
   b-service:
     image: tiny2/b-service
+    container_name: service-b
 #  d1-service:
 #    image: tiny2/d1-service
 #  d2-service:
