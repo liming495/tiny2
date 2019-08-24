@@ -21,15 +21,21 @@ ribbon:
 spring:
   rabbitmq:
     host: rabbitmq
-  zipkin:
-    base-url: http://zipkin:9411/ # 指定了 Zipkin 服务器的地址
   sleuth:
+    web:
+      client:
+        enabled: true
     sampler:
-      percentage: 1
-    integration:
-      enabled: false
-    scheduled:
-      skip-pattern: "^org.*HystrixStreamTask$"
+      probability: 1.0 # 将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
+  zipkin:
+    base-url: http://localhost:9411/ # 指定了 Zipkin 服务器的地址
+#  sleuth:
+#    sampler:
+#      percentage: 1
+#    integration:
+#      enabled: false
+#    scheduled:
+#      skip-pattern: "^org.*HystrixStreamTask$"
 
 authserver:
   hostname: auth-service
