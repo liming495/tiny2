@@ -21,6 +21,8 @@ ribbon:
 spring:
   rabbitmq:
     host: rabbitmq
+  zipkin:
+    base-url: http://zipkin:9411/ # 指定了 Zipkin 服务器的地址
   sleuth:
     sampler:
       percentage: 1

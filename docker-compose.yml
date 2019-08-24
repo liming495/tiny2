@@ -2,6 +2,7 @@ version:  '2'
 services:
   db:
     image: postgres:10
+    container_name: db
     restart: always
     ports:
       - 5432:5432
@@ -13,11 +14,13 @@ services:
       volumes: /home/server/pg_data/data:/var/lib/postgresql/data/pgdata
   redis:
     image: redis
+    container_name: redis
     restart: always
     ports:
       - '6379:6379'
   rabbitmq:
     image: rabbitmq:3-management
+    container_name: rabbitmq
     restart: always
     ports:
       - 15673:15672
