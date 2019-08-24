@@ -26,6 +26,8 @@ services:
     restart: always
     ports:
       - "9411:9411"
+    depends_on:
+      - 'rabbitmq'
   registry:
     image: tiny2/registry
     ports:
