@@ -20,6 +20,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers(matcher)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/actuator/**")
+                .permitAll()
+                .and()
+                .authorizeRequests()
                 .antMatchers(matcher)
                 .access("#oauth2.hasScope('read')");
     }
