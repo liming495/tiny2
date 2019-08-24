@@ -23,7 +23,10 @@ services:
       - 15673:15672
   zipkin:
     image: openzipkin/zipkin
+    container_name: zipkin
     restart: always
+    environment:
+      - STORAGE_TYPE=rabbitmq
     ports:
       - "9411:9411"
     depends_on:
