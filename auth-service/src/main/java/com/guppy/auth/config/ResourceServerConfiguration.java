@@ -17,10 +17,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         String matcher = "/current";
         http.antMatcher("/**").authorizeRequests()
-                .antMatchers("/actuator/**","/assets/**")
-                .permitAll()
-                .and()
-                .authorizeRequests()
                 .antMatchers(matcher)
                 .access("#oauth2.hasScope('read')");
     }
