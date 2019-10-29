@@ -17,8 +17,6 @@ spring:
 
 security:
   oauth2:
-    resource:
-      user-info-uri: http://${authserver.hostname}:${authserver.port}${authserver.contextPath}/current
     client:
       clientId: b-service
       clientSecret: ${spring.security.user.password}

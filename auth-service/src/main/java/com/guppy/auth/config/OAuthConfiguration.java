@@ -7,7 +7,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -49,13 +48,10 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String secretPassword = "{bcrypt}" + bCryptPasswordEncoder.encode("secret");
-        String finalPassword = "{bcrypt}" + bCryptPasswordEncoder.encode("password");
 
         clients.jdbc(dataSource)
                 .withClient("client")
-                .secret(secretPassword)
+                .secret(passwordEncoder.encode("secret"))
                 .authorizedGrantTypes("password", "refresh_token")
                 .scopes("read", "write")
                 .accessTokenValiditySeconds(3600) // 1 hour
@@ -64,25 +60,25 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
                 .withClient("a-service")
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
-                .secret(finalPassword)
+                .secret(passwordEncoder.encode("password"))
                 .and()
                 .withClient("b-service")
-                .secret(finalPassword)
+                .secret(passwordEncoder.encode("password"))
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
                 .and()
                 .withClient("d1-service")
-                .secret(finalPassword)
+                .secret(passwordEncoder.encode("password"))
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
                 .and()
                 .withClient("d2-service")
-                .secret(finalPassword)
+                .secret(passwordEncoder.encode("password"))
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
                 .and()
                 .withClient("d3-service")
-                .secret(finalPassword)
+                .secret(passwordEncoder.encode("password"))
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server")
         ;
@@ -94,17 +90,15 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
     protected static class AuthenticationManagerConfiguration extends GlobalAuthenticationConfigurerAdapter {
         @Autowired
         private DataSource dataSource;
+        @Autowired
+        private PasswordEncoder passwordEncoder;
 
         @Override
         public void init(AuthenticationManagerBuilder auth) throws Exception {
-            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-            String secretPassword = "{bcrypt}" + bCryptPasswordEncoder.encode("secret");
-            String finalPassword = "{bcrypt}" + bCryptPasswordEncoder.encode("password");
-
             auth.jdbcAuthentication().dataSource(dataSource)
-                    .withUser("dave").password(secretPassword).roles("USER")
+                    .withUser("dave").password(passwordEncoder.encode("secret")).roles("USER")
                     .and()
-                    .withUser("anil").password(finalPassword).roles("ADMIN")
+                    .withUser("anil").password(passwordEncoder.encode("password")).roles("ADMIN")
             ;
         }
     }
