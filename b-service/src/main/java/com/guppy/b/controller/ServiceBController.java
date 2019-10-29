@@ -30,7 +30,7 @@ public class ServiceBController {
     private String msg;
 
     @GetMapping(value = "/")
-    public String printServiceB(){
+    public String printServiceB(String age){
         try {
             ServiceInstance serviceInstance = client.choose(registration.getServiceId());
             return serviceInstance.getServiceId()
@@ -40,7 +40,9 @@ public class ServiceBController {
                     + serviceInstance.getPort()
                     + ")"
                     + "===>Say "
-                    + msg;
+                    + msg
+                    + " and "
+                    + age;
         } catch (Exception e) {
             logger.error(e.getMessage());
             throw e;
