@@ -43,7 +43,7 @@ public class ServiceAController {
                 + ") ===>name:"
                 + name
                 + "<br/>"
-                + serviceBClient.printServiceB();
+                + serviceBClient.printServiceB("111");
     }
 
     @GetMapping(path = "/current")
